@@ -1,0 +1,15 @@
+.element {
+  margin: 0;
+  padding: 0;
+  max-width: 282px;
+  width: 100%;
+  background: #FFF;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 767.19px) {
+  .elements {
+    width: calc(100% - 38px);
+  }
+}

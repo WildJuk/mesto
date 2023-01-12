@@ -3,6 +3,7 @@
   padding: 0;
   width: 100%;
   min-height: 282px;
+  max-height: 282px;
   object-fit: cover;
   display: block;
 }

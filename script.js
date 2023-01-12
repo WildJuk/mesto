@@ -4,20 +4,16 @@ let popupCloseButton = popup.querySelector('.popup__close');
 let popupForm = popup.querySelector('.popup__form');
 
 function getProfileInfo() {
-  let profileName = document.querySelector('.profile__name');
-  let profileJob = document.querySelector('.profile__job');
   return {
-    name: profileName,
-    job: profileJob,
+    name: document.querySelector('.profile__name'),
+    job: document.querySelector('.profile__job'),
   }
 };
 
 function getPopupFormInputs() {
-  let popupFormNameInput = popupForm.querySelector('.popup__name-input');
-  let popupFormJobInput = popupForm.querySelector('.popup__job-input');
   return {
-    name: popupFormNameInput,
-    job: popupFormJobInput,
+    name: popupForm.querySelector('.popup__name-input'),
+    job: popupForm.querySelector('.popup__job-input'),
   }
 };
 

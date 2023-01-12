@@ -3,23 +3,13 @@ let popup = document.querySelector('.popup');
 let popupCloseButton = popup.querySelector('.popup__close');
 let popupForm = popup.querySelector('.popup__form');
 
-function getProfileInfo() {
-  return {
-    name: document.querySelector('.profile__name'),
-    job: document.querySelector('.profile__job'),
-  }
-};
-
-function getPopupFormInputs() {
-  return {
-    name: popupForm.querySelector('.popup__name-input'),
-    job: popupForm.querySelector('.popup__job-input'),
-  }
-};
-
 function openEditFormPopup() {
-  getPopupFormInputs().name.value = getProfileInfo().name.textContent;
-  getPopupFormInputs().job.value = getProfileInfo().job.textContent;
+  let profileName =  document.querySelector('.profile__name');
+  let profileJob =  document.querySelector('.profile__job');
+  let inputName = popupForm.querySelector('.popup__name-input');
+  let inputJob = popupForm.querySelector('.popup__job-input');
+  inputName.value = profileName.textContent;
+  inputJob.value = profileJob.textContent;
   popup.classList.add('popup_opened');
 };
 
@@ -29,22 +19,19 @@ function closeEditFormPopup() {
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
-  let inputsValues = getPopupFormInputs();
-  if(inputsValues.name.value !== '') {
-    getProfileInfo().name.textContent = inputsValues.name.value;
-    getProfileInfo().name.title = inputsValues.name.value;
+  let profileName =  document.querySelector('.profile__name');
+  let profileJob =  document.querySelector('.profile__job');
+  let inputName = popupForm.querySelector('.popup__name-input');
+  let inputJob = popupForm.querySelector('.popup__job-input');
+  if(inputName.value !== '') {
+    profileName.textContent = inputName.value;
+    profileName.title = inputName.value;
   }
-  if(inputsValues.job.value !== '') {
-    getProfileInfo().job.textContent = inputsValues.job.value;
-    getProfileInfo().job.title = inputsValues.job.value;
+  if(inputJob.value !== '') {
+    profileJob.textContent = inputJob.value;
+    profileJob.title = inputJob.value;
   }
   closeEditFormPopup();
-};
-
-function keyUpEvent(evt) {
-  if(evt.code === 13) {
-    handleFormSubmit();
-  }
 };
 
 editButton.addEventListener('click', openEditFormPopup);
@@ -52,6 +39,4 @@ editButton.addEventListener('click', openEditFormPopup);
 popupCloseButton.addEventListener('click', closeEditFormPopup);
 
 popupForm.addEventListener('submit', handleFormSubmit);
-
-window.addEventListener('keyup', keyUpEvent);
 

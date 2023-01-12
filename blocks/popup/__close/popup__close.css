@@ -8,14 +8,14 @@
   top: -40px;
   border: none;
   background-color: transparent;
-  background-image: url('../../../images/popup/close-icon.svg');
+  background-image: url('../../../images/popup/close_icon.svg');
   background-repeat: no-repeat;
   background-size: 32px 32px;
   transition: opacity 200ms linear;
   cursor: pointer;
 }
 
-.popup__close {
+.popup__close:hover {
   opacity: 60%;
 }
 

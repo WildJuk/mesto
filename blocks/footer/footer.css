@@ -5,7 +5,7 @@
   width: calc(100% - 38px);
 }
 
-@media screen and (max-width: 767.19px) {
+@media screen and (max-width: 767px) {
   .footer {
     margin: 48px auto 36px;
   }

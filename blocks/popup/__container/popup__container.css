@@ -1,8 +1,4 @@
 .popup__container {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   margin: 0;
   padding: 34px 36px;
   max-width: 430px;
@@ -10,9 +6,10 @@
   background-color: #fff;
   border-radius: 10px;
   box-sizing: border-box;
+  position: relative;
 }
 
-@media screen and (max-width: 767.19px) {
+@media screen and (max-width: 767px) {
   .popup__container {
     padding: 25px 22px;
   }

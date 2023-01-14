@@ -4,10 +4,12 @@
 @import url('../blocks/root/root.css');
 @import url('../blocks/page/page.css');
 
-
 /* header styles */
 @import url('../blocks/header/header.css');
 @import url('../blocks/header/__logo/header__logo.css');
+
+/* content styles */
+@import url('../blocks/content/content.css');
 
 /* profile block styles */
 @import url('../blocks/profile/profile.css');

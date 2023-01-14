@@ -1,7 +1,7 @@
 .element {
   margin: 0;
   padding: 0;
-  max-width: 282px;
+  max-width: 100%;
   width: 100%;
   background: #FFF;
   border-radius: 10px;

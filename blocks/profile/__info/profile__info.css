@@ -6,7 +6,6 @@
   column-gap: 18px;
   row-gap: 16px;
   position: relative;
-  align-items: baseline;
 }
 
 @media screen and (max-width: 767px) {

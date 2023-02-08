@@ -1,0 +1,15 @@
+.element__trash {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  transition: opacity 200ms linear;
+}
+
+.element__trash:hover {
+  opacity: 60%
+}

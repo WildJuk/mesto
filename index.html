@@ -18,9 +18,9 @@
       <section class="profile">
         <img src="./images/profile/__avatar.jpg" alt="Фотография профиля" class="profile__avatar">
         <div class="profile__info">
-          <h1 class="profile__name" title="Жак-Ив Кусто">Жак-Ив Кусто</h1>
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button type="button" aria-label="Редактировать профиль" class="profile__edit-button"></button>
-          <p class="profile__job" title="Исследователь океана">Исследователь океана</p>
+          <p class="profile__job">Исследователь океана</p>
         </div>
         <button type="button" aria-label="Добавить" class="profile__add-button"></button>
       </section>
@@ -39,33 +39,28 @@
         <button type="button" aria-label="Закрыть попап" class="popup__close"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form name="profile-edit-popup" class="popup__form popup__form_type_edit" novalidate>
-          <label for="profile-name" class="popup__input-label">
-            <input
-              required
-              id="profile-name"
-              type="text"
-              name="profile-name"
-              class="popup__input popup__input_name_profile-name"
-              placeholder="Имя"
-              minlength="2"
-              maxlength="40"
-            >
-            <span class="popup__input-error profile-name-error"></span>
-          </label>
-          <label for="profile-job" class="popup__input-label">
-            <input
-              required
-              id="profile-job"
-              type="text"
-              name="profile-job"
-              class="popup__input popup__input_name_profile-job"
-              placeholder="Профессия"
-              minlength="2"
-              maxlength="200"
-            >
-            <span class="popup__input-error profile-job-error"></span>
-          </label>
-
+          <input
+            required
+            id="profile-name"
+            type="text"
+            name="profile-name"
+            class="popup__input popup__input_name_profile-name"
+            placeholder="Имя"
+            minlength="2"
+            maxlength="40"
+          >
+          <p class="popup__input-error profile-name-error"></p>
+          <input
+            required
+            id="profile-job"
+            type="text"
+            name="profile-job"
+            class="popup__input popup__input_name_profile-job"
+            placeholder="Профессия"
+            minlength="2"
+            maxlength="200"
+          >
+          <p class="popup__input-error profile-job-error"></p>
           <button type="submit" class="popup__submit-button popup__submit-button_type_profile">Сохранить</button>
         </form>
       </div>
@@ -76,31 +71,26 @@
         <button type="button" aria-label="Закрыть попап" class="popup__close"></button>
         <h2 class="popup__title">Новое место</h2>
         <form name="card-add-popup" class="popup__form popup__form_type_add" novalidate>
-          <label for="card-name" class="popup__input-label">
-            <input
-              required
-              id="card-name"
-              type="text"
-              name="card-name"
-              class="popup__input popup__input_name_card-name"
-              placeholder="Название"
-              minlength="2"
-              maxlength="30"
-            >
-            <span class="popup__input-error card-name-error"></span>
-          </label>
-
-          <label for="card-link" class="popup__input-label">
-            <input
-              required
-              id="card-link"
-              type="url"
-              name="card-link"
-              class="popup__input popup__input_name_card-link"
-              placeholder="Ссылка на картинку"
-            >
-            <span class="popup__input-error card-link-error"></span>
-          </label>
+          <input
+            required
+            id="card-name"
+            type="text"
+            name="card-name"
+            class="popup__input popup__input_name_card-name"
+            placeholder="Название"
+            minlength="2"
+            maxlength="30"
+          >
+          <p class="popup__input-error card-name-error"></p>
+          <input
+            required
+            id="card-link"
+            type="url"
+            name="card-link"
+            class="popup__input popup__input_name_card-link"
+            placeholder="Ссылка на картинку"
+          >
+          <p class="popup__input-error card-link-error"></p>
           <button type="submit" class="popup__submit-button popup__submit-button_type_card">Создать</button>
         </form>
       </div>

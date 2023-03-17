@@ -38,7 +38,7 @@
       <div class="popup__container">
         <button type="button" aria-label="Закрыть попап" class="popup__close"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="profile-edit-popup" class="popup__form popup__form_type_edit" novalidate>
+        <form name="profile-edit-form" class="popup__form popup__form_type_edit" novalidate>
           <input
             required
             id="profile-name"
@@ -70,7 +70,7 @@
       <div class="popup__container">
         <button type="button" aria-label="Закрыть попап" class="popup__close"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form name="card-add-popup" class="popup__form popup__form_type_add" novalidate>
+        <form name="card-add-form" class="popup__form popup__form_type_add" novalidate>
           <input
             required
             id="card-name"
@@ -119,8 +119,8 @@
     </li>
   </template>
   <script type="mobule" src="./modules/initial-cards.js"></script>
-  <script type="module" src="./modules/script.js"></script>
-  <script type="module" src="./modules/card.js"></script>
-  <script type="module" src="./modules/form-validator.js"></script>
+  <script type="module" src="./modules/index.js"></script>
+  <script type="module" src="./modules/Card.js"></script>
+  <script type="module" src="./modules/FormValidator.js"></script>
 </body>
 </html>

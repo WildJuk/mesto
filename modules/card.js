@@ -1,5 +1,3 @@
-import { openPopup } from "./index.js";
-
 export class Card {
   constructor(cardData, templateSelector, handleCardClick) {
     this._cardData = cardData;

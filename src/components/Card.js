@@ -1,6 +1,6 @@
 export class Card {
-  constructor(cardData, templateSelector, handleCardClick) {
-    this._cardData = cardData;
+  constructor({data, handleCardClick} , templateSelector) {
+    this._cardData = data;
     this._card =
       document.querySelector(templateSelector).content
       .querySelector('.element').cloneNode(true);
@@ -9,9 +9,6 @@ export class Card {
     this._cardElement = this._createCard();
     this._buttonLike = this._cardElement.querySelector('.element__like');
     this._buttonDelete = this._cardElement.querySelector('.element__trash');
-    this._popupFullImage = document.querySelector('.popup_type_image-full');
-    this._popupImage = this._popupFullImage.querySelector('.popup__image');
-    this._popupCaption = this._popupFullImage.querySelector('.popup__caption');
     this._handleCardClick = handleCardClick;
     this._setEventListeners();
   }
@@ -35,7 +32,10 @@ export class Card {
     this._buttonLike.addEventListener('click', () => this._clickLike());
     this._buttonDelete.addEventListener('click', () => this._deleteCard());
     this._cardImage.addEventListener('click', () => {
-      this._handleCardClick(this._cardData.name, this._cardData.link)
+      this._handleCardClick({
+        name: this._cardData.name,
+        link: this._cardData.link
+      })
     });
   }
 

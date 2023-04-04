@@ -10,23 +10,12 @@ import { FormValidator } from './components/FormValidator.js';
 
 // Кнопки открытия попапов с формой
 const buttonEditProfile = document.querySelector('.profile__edit-button');
-// const buttonAddCard = document.querySelector('.profile__add-button');
+const buttonAddCard = document.querySelector('.profile__add-button');
 
 // инпуты формы редактирования профиля
-const inputProfileName = document.querySelector('.popup__input_name_profile-name');
-const inputProfileAbout = document.querySelector('.popup__input_name_profile-about');
-
-const formValidators = {};
-// Включение валидации
-const enableValidation = (config) => {
-  const formList = Array.from(document.querySelectorAll(config.formSelector));
-  formList.forEach((formElement) => {
-    const validator = new FormValidator(config, formElement);
-    const formName = formElement.getAttribute('name');
-    formValidators[formName] = validator;
-    validator.enableValidation();
-  });
-};
+const popupEditProfileDom = document.querySelector('.popup__form_type_edit');
+const inputProfileName = popupEditProfileDom.querySelector('.popup__input_name_profile-name');
+const inputProfileAbout = popupEditProfileDom.querySelector('.popup__input_name_profile-about');
 
 const userInfo = new UserInfo({
   nameSelector: userInfoSelectors.userNameSelector,
@@ -47,21 +36,23 @@ const popupFullImage = new PopupWithImage('.popup_type_image-full');
 const popupEditProfile = new PopupWithForm({
   popupSelector: '.popup_type_profile-edit',
   handleFormSubmit: (data) => {
+    console.log(data)
     userInfo.setUserInfo(data);
     popupEditProfile.close();
   }
 });
 
-// const popupAddCard = new PopupWithForm({
-//   popupSelector: '.popup_type_add-card',
-//   handleFormSubmit: (data) => {
-//     cardsList.addItem(createCard(data));
-//   }
-// });
+const popupAddCard = new PopupWithForm({
+  popupSelector: '.popup_type_add-card',
+  handleFormSubmit: (data) => {
+    cardsList.addItem(createCard(data, gallerySelectors.elementSelector));
+  }
+});
 
 cardsList.renderItems();
 popupFullImage.setEventListeners();
 popupEditProfile.setEventListeners();
+popupAddCard.setEventListeners();
 
 function createCard(data, template) {
   const newCard = new Card({
@@ -73,41 +64,33 @@ function createCard(data, template) {
   return newCard.getCard();
 };
 
-enableValidation(config);
-
 function handleOpenEditProfileFormPopup() {
+  formValidators['profile-edit-form'].disableSubmitButton();
   const currentUserInfo = userInfo.getUserInfo();
   inputProfileName.value = currentUserInfo.userName;
   inputProfileAbout.value = currentUserInfo.userAbout;
   popupEditProfile.open();
 };
 
-// function handleOpenAddCardFormPopup() {
-//   popupCardForm.reset();
-//   formValidators['card-add-form'].disableSubmitButton();
-//   openPopup(popupAddCard);
-// };
-
-// function handleFormSubmitEditProfile() {
-//   userInfo.setUserInfo({
-//     userName: inputProfileName.value,
-//     userAbout: inputProfileJob.value
-//   });
-//   closePopup(popupEditProfile);
-// };
-
-// function handleFormSubmitAddCard() {
-//   const card = createCard({
-//     name: inputCardName.value,
-//     link: inputCardLink.value
-//   }, gallerySelectors.elementSelector);
-//   cardsList.addItem(card);
-//   closePopup(popupAddCard);
-//   popupCardForm.reset();
-// };
+function handleOpenAddCardFormPopup() {
+  formValidators['card-add-form'].disableSubmitButton();
+  popupAddCard.open();
+};
 
 buttonEditProfile.addEventListener('click', handleOpenEditProfileFormPopup);
 
-// buttonAddCard.addEventListener('click', handleOpenAddCardFormPopup);
+buttonAddCard.addEventListener('click', handleOpenAddCardFormPopup);
 
-// popupCardForm.addEventListener('submit', handleFormSubmitAddCard);
+const formValidators = {};
+// Включение валидации
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    const formName = formElement.getAttribute('name');
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(config);

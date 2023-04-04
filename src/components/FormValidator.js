@@ -67,7 +67,15 @@ export class FormValidator {
     });
 
     this._inputsList.forEach(inputElement => {
+      console.log(inputElement)
+      inputElement.addEventListener('focus', () => {
+        console.log('focus!')
+      })
+      inputElement.addEventListener('blur', () => {
+        console.log('blur!')
+      })
       inputElement.addEventListener('input', () => {
+        console.log('input!!!')
         this._checkInputValidity(inputElement);
         this._toggleButtonState();
       });

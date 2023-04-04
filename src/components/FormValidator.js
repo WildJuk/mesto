@@ -62,37 +62,13 @@ export class FormValidator {
     });
 
     this._inputsList.forEach(inputElement => {
-      console.log(inputElement)
-      inputElement.addEventListener('focus', () => {
-        console.log('focus!')
-      })
-      inputElement.addEventListener('blur', () => {
-        console.log('blur!')
-      })
       inputElement.addEventListener('input', (event) => {
-        console.log(event)
-        this._checkInputValidity(inputElement);
-        this._toggleButtonState();
-      });
-      inputElement.addEventListener('keyup', () => {
-        console.log('keyup!!!')
-        this._checkInputValidity(inputElement);
-        this._toggleButtonState();
-      });
-      inputElement.addEventListener('keydown', () => {
-        console.log('keydown!!!')
-        this._checkInputValidity(inputElement);
-        this._toggleButtonState();
-      });
-      inputElement.addEventListener('change', () => {
-        console.log('change!!!')
         this._checkInputValidity(inputElement);
         this._toggleButtonState();
       });
     });
 
     this._form.addEventListener('reset', () => {
-      console.log('reset!!!')
       this._removeValidationErrors();
       this._toggleButtonState();
     });

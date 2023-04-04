@@ -6,7 +6,6 @@ export class PopupWithForm extends Popup {
     super(popupSelector);
     this._popupForm = this._popup.querySelector(config.formSelector);
     this._handleFormSubmit = handleFormSubmit;
-    console.log('popup with form!')
   }
 
   _getInputValues() {

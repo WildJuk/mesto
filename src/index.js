@@ -36,7 +36,6 @@ const popupFullImage = new PopupWithImage('.popup_type_image-full');
 const popupEditProfile = new PopupWithForm({
   popupSelector: '.popup_type_profile-edit',
   handleFormSubmit: (data) => {
-    console.log(data)
     userInfo.setUserInfo(data);
     popupEditProfile.close();
   }
@@ -45,7 +44,11 @@ const popupEditProfile = new PopupWithForm({
 const popupAddCard = new PopupWithForm({
   popupSelector: '.popup_type_add-card',
   handleFormSubmit: (data) => {
-    cardsList.addItem(createCard(data, gallerySelectors.elementSelector));
+    cardsList.addItem(createCard({
+      name: data['card-name'],
+      link: data['card-link']
+    }, gallerySelectors.elementSelector));
+    popupAddCard.close();
   }
 });
 

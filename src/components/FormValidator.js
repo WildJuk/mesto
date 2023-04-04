@@ -61,11 +61,6 @@ export class FormValidator {
       evt.preventDefault();
     });
 
-    this._form.addEventListener('reset', () => {
-      this._removeValidationErrors();
-      this._toggleButtonState();
-    });
-
     this._inputsList.forEach(inputElement => {
       console.log(inputElement)
       inputElement.addEventListener('focus', () => {
@@ -74,11 +69,32 @@ export class FormValidator {
       inputElement.addEventListener('blur', () => {
         console.log('blur!')
       })
-      inputElement.addEventListener('input', () => {
-        console.log('input!!!')
+      inputElement.addEventListener('input', (event) => {
+        console.log(event)
         this._checkInputValidity(inputElement);
         this._toggleButtonState();
       });
+      inputElement.addEventListener('keyup', () => {
+        console.log('keyup!!!')
+        this._checkInputValidity(inputElement);
+        this._toggleButtonState();
+      });
+      inputElement.addEventListener('keydown', () => {
+        console.log('keydown!!!')
+        this._checkInputValidity(inputElement);
+        this._toggleButtonState();
+      });
+      inputElement.addEventListener('change', () => {
+        console.log('change!!!')
+        this._checkInputValidity(inputElement);
+        this._toggleButtonState();
+      });
+    });
+
+    this._form.addEventListener('reset', () => {
+      console.log('reset!!!')
+      this._removeValidationErrors();
+      this._toggleButtonState();
     });
   }
 

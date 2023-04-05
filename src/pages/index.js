@@ -1,21 +1,16 @@
-import './pages/index.css';
+import './index.css';
 
-import { userInfoSelectors, initialCards, config, gallerySelectors } from './utils/constants.js';
-import { UserInfo } from './components/UserInfo.js';
-import { Section } from './components/Section.js';
-import { Card } from './components/Card.js';
-import { PopupWithImage } from './components/PopupWithImage.js';
-import { PopupWithForm } from './components/PopupWithForm.js';
-import { FormValidator } from './components/FormValidator.js';
+import { userInfoSelectors, initialCards, config, gallerySelectors } from '../utils/constants.js';
+import { UserInfo } from '../components/UserInfo.js';
+import { Section } from '../components/Section.js';
+import { Card } from '../components/Card.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { FormValidator } from '../components/FormValidator.js';
 
 // Кнопки открытия попапов с формой
 const buttonEditProfile = document.querySelector('.profile__edit-button');
 const buttonAddCard = document.querySelector('.profile__add-button');
-
-// инпуты формы редактирования профиля
-const popupEditProfileDom = document.querySelector('.popup__form_type_edit');
-const inputProfileName = popupEditProfileDom.querySelector('.popup__input_name_profile-name');
-const inputProfileAbout = popupEditProfileDom.querySelector('.popup__input_name_profile-about');
 
 const userInfo = new UserInfo({
   nameSelector: userInfoSelectors.userNameSelector,
@@ -70,8 +65,10 @@ function createCard(data, template) {
 function handleOpenEditProfileFormPopup() {
   formValidators['profile-edit-form'].disableSubmitButton();
   const currentUserInfo = userInfo.getUserInfo();
-  inputProfileName.value = currentUserInfo.userName;
-  inputProfileAbout.value = currentUserInfo.userAbout;
+  popupEditProfile.setInputValues({
+    userName: currentUserInfo.userName,
+    userAbout: currentUserInfo.userAbout
+  });
   popupEditProfile.open();
 };
 

@@ -15,7 +15,9 @@
 
     <main class="content">
       <section class="profile">
-        <img src="<%=require('./images/profile/__avatar.jpg')%>" alt="Фотография профиля" class="profile__avatar">
+        <div class="profile__avatar-container">
+          <img src="#" alt="Фотография профиля" class="profile__avatar">
+        </div>
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button type="button" aria-label="Редактировать профиль" class="profile__edit-button"></button>
@@ -30,7 +32,7 @@
     </main>
 
     <footer class="footer">
-      <p class="footer__author">© 2020 Mesto Russia</p>
+      <p class="footer__author">© 2023 Mesto Russia</p>
     </footer>
 
     <div class="popup popup_type_profile-edit">
@@ -61,6 +63,25 @@
           >
           <p class="popup__input-error profile-about-error"></p>
           <button type="submit" class="popup__submit-button popup__submit-button_type_profile">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup_type_avatar-edit">
+      <div class="popup__container">
+        <button type="button" aria-label="Закрыть попап" class="popup__close"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form name="avatar-edit-form" class="popup__form popup__form_type_avatar-edit" novalidate>
+          <input
+            required
+            id="avatar"
+            type="url"
+            name="userAvatar"
+            class="popup__input popup__input_name_profile-avatar"
+            placeholder="Ссылка на изображение"
+          >
+          <p class="popup__input-error avatar-error"></p>
+          <button type="submit" class="popup__submit-button popup__submit-button_type_avatar">Сохранить</button>
         </form>
       </div>
     </div>

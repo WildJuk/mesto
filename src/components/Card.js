@@ -1,6 +1,7 @@
 export class Card {
-  constructor({data, handleCardClick} , templateSelector) {
+  constructor({data, handleCardClick, handleDeleteButtonClick, userId} , templateSelector) {
     this._cardData = data;
+    this._userId = userId;
     this._card =
       document.querySelector(templateSelector).content
       .querySelector('.element').cloneNode(true);
@@ -10,6 +11,7 @@ export class Card {
     this._buttonLike = this._cardElement.querySelector('.element__like');
     this._buttonDelete = this._cardElement.querySelector('.element__trash');
     this._handleCardClick = handleCardClick;
+    this._handleDeleteButtonClick = handleDeleteButtonClick;
     this._setEventListeners();
   }
 
@@ -20,8 +22,13 @@ export class Card {
     return this._card;
   }
 
-  _deleteCard() {
+
+  deleteCard() {
     this._cardElement.remove();
+  }
+
+  getCardId() {
+    return this._cardData._id
   }
 
   _clickLike() {
@@ -30,7 +37,7 @@ export class Card {
 
   _setEventListeners() {
     this._buttonLike.addEventListener('click', () => this._clickLike());
-    this._buttonDelete.addEventListener('click', () => this._deleteCard());
+    this._buttonDelete.addEventListener('click', () => this._handleDeleteButtonClick(this));
     this._cardImage.addEventListener('click', () => {
       this._handleCardClick({
         name: this._cardData.name,
@@ -40,6 +47,9 @@ export class Card {
   }
 
   getCard() {
+    if(this._cardData.owner._id !== this._userId) {
+      this._buttonDelete.classList.add('element__trash_hidden');
+    }
     return this._cardElement
   }
 }

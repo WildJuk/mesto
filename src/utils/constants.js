@@ -17,3 +17,10 @@ export const gallerySelectors = {
   containerSelector: '.elements__container',
   elementSelector: '.gallery-element'
 }
+
+export const popupsSelectors = {
+  popupEditForm: '.popup_type_profile-edit',
+  popupEditAvatar: '.popup_type_avatar-edit',
+  popupAddCard: '.popup_type_add-card',
+  popupFullImage: '.popup_type_image-full'
+}

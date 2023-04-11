@@ -1,6 +1,7 @@
 import './index.css';
 
-import { userInfoSelectors, config, gallerySelectors } from '../utils/constants.js';
+import { userInfoSelectors, config, gallerySelectors, popupsSelectors } from '../utils/constants.js';
+import { renderLoading } from '../utils/utils.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { Section } from '../components/Section.js';
 import { Card } from '../components/Card.js';
@@ -36,11 +37,12 @@ const cardsList = new Section(
   },
   gallerySelectors.containerSelector
 );
-const popupFullImage = new PopupWithImage('.popup_type_image-full');
+const popupFullImage = new PopupWithImage(popupsSelectors.popupFullImage);
 
 const popupEditProfile = new PopupWithForm({
-  popupSelector: '.popup_type_profile-edit',
+  popupSelector: popupsSelectors.popupEditForm,
   handleFormSubmit: (formData) => {
+    renderLoading(popupsSelectors.popupEditForm, true);
     api.setUserInfo({
       name: formData.userName,
       about: formData.userAbout
@@ -56,26 +58,34 @@ const popupEditProfile = new PopupWithForm({
       .catch(err =>
         console.log(`Ошибка загрузки новой карточки: ${err}`)
       )
+      .finally(() => {
+        renderLoading(popupsSelectors.popupEditForm, false);
+      })
   }
 });
 
 const popupEditAvatar = new PopupWithForm({
-  popupSelector: '.popup_type_avatar-edit',
+  popupSelector: popupsSelectors.popupEditAvatar,
   handleFormSubmit: (formData) => {
+    renderLoading(popupsSelectors.popupEditAvatar, true);
     api.setUserAvatar(formData.userAvatar)
       .then((data) => {
-        userInfo.setUserInfo({userAvatar: data.avatar});
+        userInfo.setUserInfo({userAvatar: data.avatar, userName: data.name, userAbout: data.about});
         popupEditAvatar.close();
       })
       .catch(err =>
         console.log(`Ошибка загрузки аватара: ${err}`)
       )
+      .finally(() => {
+        renderLoading(popupsSelectors.popupEditAvatar, false);
+      })
   }
 });
 
 const popupAddCard = new PopupWithForm({
-  popupSelector: '.popup_type_add-card',
+  popupSelector: popupsSelectors.popupAddCard,
   handleFormSubmit: (formData) => {
+    renderLoading(popupsSelectors.popupAddCard, true);
     api.addNewCard({
       name: formData['card-name'],
       link: formData['card-link']
@@ -87,7 +97,9 @@ const popupAddCard = new PopupWithForm({
       .catch(err =>
         console.log(`Ошибка загрузки новой карточки: ${err}`)
       )
-
+      .finally(() => {
+        renderLoading(popupsSelectors.popupAddCard, false);
+      })
   }
 });
 
@@ -111,6 +123,15 @@ function createCard(data, template) {
           console.log(`Ошибка удаления карточки: ${err}`)
         )
     },
+    handleLikeClick: (card) => {
+      api.changeLikeState(card.getCardId(), card.isLiked())
+        .then(data => {
+          card.setLike(data);
+        })
+        .catch(err =>
+          console.log(`Ошибка статуса лайка: ${err}`)
+        )
+    },
     userId
   }, template);
   return newCard.getCard();
@@ -132,7 +153,6 @@ function handleOpenAddCardFormPopup() {
 };
 
 function handleOpenEditAvatarFormPopup() {
-  console.log('click in avatar')
   formValidators['avatar-edit-form'].disableSubmitButton();
   popupEditAvatar.open();
 }
@@ -170,5 +190,5 @@ api.getStartAppData()
     cardsList.renderItems(initialCards);
   })
   .catch(err =>
-    console.log(`123Ошибка загрузки данных: ${err}`)
+    console.log(`Ошибка загрузки данных: ${err}`)
   )

@@ -8,6 +8,7 @@ import { Card } from '../components/Card.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { FormValidator } from '../components/FormValidator.js';
+import { PopupWithConfirmation } from '../components/PopupWithConfirmation.js';
 import { Api } from '../components/Api.js';
 
 const buttonEditProfile = document.querySelector('.profile__edit-button');
@@ -103,10 +104,14 @@ const popupAddCard = new PopupWithForm({
   }
 });
 
+const popupDeleteCard = new PopupWithConfirmation(popupsSelectors.popupDeleteCard)
+
 popupFullImage.setEventListeners();
 popupEditProfile.setEventListeners();
 popupEditAvatar.setEventListeners();
 popupAddCard.setEventListeners();
+popupDeleteCard.setEventListeners();
+
 
 function createCard(data, template) {
   const newCard = new Card({
@@ -115,13 +120,17 @@ function createCard(data, template) {
       popupFullImage.open(data);
     },
     handleDeleteButtonClick: (card) => {
-      api.deleteCard(card.getCardId())
-        .then(() => {
-          card.deleteCard();
-        })
-        .catch(err =>
-          console.log(`Ошибка удаления карточки: ${err}`)
-        )
+      popupDeleteCard.open();
+      popupDeleteCard.setHandleDeleteClick(() => {
+        api.deleteCard(card.getCardId())
+          .then(() => {
+            card.deleteCard();
+            popupDeleteCard.close();
+          })
+          .catch(err =>
+            console.log(`Ошибка удаления карточки: ${err}`)
+          )
+      })
     },
     handleLikeClick: (card) => {
       api.changeLikeState(card.getCardId(), card.isLiked())

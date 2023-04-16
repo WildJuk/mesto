@@ -33,6 +33,7 @@
 .popup__close{background-color:transparent;background-image:url(973e77374abfb705de40.svg);background-repeat:no-repeat;background-size:32px 32px;border:none;cursor:pointer;height:32px;margin:0;padding:0;position:absolute;right:-40px;top:-40px;transition:opacity .2s linear;width:32px}.popup__close:hover{opacity:60%}@media screen and (max-width:767px){.popup__close{background-size:20px 20px;height:20px;right:0;top:-36px;width:20px}}
 .popup__title{font-size:24px;font-weight:900;line-height:29px;margin:0;padding:0}@media screen and (max-width:767px){.popup__title{font-size:18px;line-height:1.22}}
 .popup__form{display:grid;margin:54px 0 0;padding:0}@media screen and (max-width:767px){.popup__form{margin:75px 0 0}}
+.popup__form_delete-card{margin-top:19px}
 .popup__input{border:none;border-bottom:1px solid rgba(0,0,0,.2);font-size:14px;line-height:17px;margin:0 0 5px;outline:none;padding:0 0 13px;width:100%}
 .popup__input_type_error{border-color:red}
 .popup__input-error{color:red;font-size:12px;font-weight:400;line-height:1;margin:0;min-height:24px;opacity:0;padding:0}

@@ -196,7 +196,7 @@ api.getStartAppData()
       userAvatar: userData.avatar
     });
 
-    cardsList.renderItems(initialCards);
+    cardsList.renderItems(initialCards.reverse());
   })
   .catch(err =>
     console.log(`Ошибка загрузки данных: ${err}`)

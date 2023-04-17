@@ -14,8 +14,14 @@ export class UserInfo {
   }
 
   setUserInfo({ userName, userAbout, userAvatar }) {
-    this._nameElement.textContent = userName;
-    this._aboutElement.textContent = userAbout;
-    this._avatarElement.src = userAvatar;
+      if(!!userName) {
+        this._nameElement.textContent = userName;
+      }
+      if(!!userAbout) {
+        this._aboutElement.textContent = userAbout;
+      }
+      if(!!userAvatar) {
+        this._avatarElement.src = userAvatar;
+      }
   }
 }
